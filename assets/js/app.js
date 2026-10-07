@@ -199,6 +199,30 @@
   $("#topSecBody").innerHTML = R.topsec.map(s => `
     <tr><td>${s.mun}</td><td class="num">${s.zona}</td><td class="num">${s.secao}</td><td class="num"><b>${s.votos}</b></td></tr>`).join("");
 
+  /* ---------- explorador de seções por município ---------- */
+  if (window.SECOES && $("#secMunSel")) {
+    const sel = $("#secMunSel"), body = $("#secDetBody"), ssearch = $("#secSearch"), summ = $("#secSummary");
+    SECOES.forEach((m, i) => {
+      const o = document.createElement("option");
+      o.value = i; o.textContent = `${m.nome} — ${fmtInt(m.votos)} votos (${fmtInt(m.nsec)} seções)`;
+      sel.appendChild(o);
+    });
+    let curr = 0, sfilter = "";
+    function renderSec() {
+      const m = SECOES[curr];
+      let rows = m.rows;
+      if (sfilter) rows = rows.filter(r => norm(r.loc).includes(sfilter) || norm(r.b).includes(sfilter));
+      body.innerHTML = rows.map(r => `<tr>
+        <td class="num">${r.z}</td><td class="num">${r.s}</td>
+        <td>${r.loc || "—"}</td><td>${r.b || "—"}</td>
+        <td class="num"><b>${r.v}</b></td></tr>`).join("");
+      summ.textContent = `${rows.length} seções · ${fmtInt(rows.reduce((a, r) => a + r.v, 0))} votos`;
+    }
+    sel.addEventListener("change", e => { curr = +e.target.value; sfilter = ""; ssearch.value = ""; renderSec(); });
+    ssearch.addEventListener("input", e => { sfilter = norm(e.target.value); renderSec(); });
+    renderSec();
+  }
+
   /* ---------- redutos ---------- */
   const redutos = M.filter(m => m.venceu).sort((a, b) => b.pctVal - a.pctVal);
   $("#redutosGrid").innerHTML = redutos.map(m => `

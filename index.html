@@ -158,6 +158,24 @@
         </div>
       </div>
     </div>
+
+    <div class="sec-sub">
+      <h3>Explore todas as seções por município</h3>
+      <p>Selecione um município para ver cada seção eleitoral — com o <b>local de votação (colégio/escola)</b>, o <b>bairro/povoado</b> e a quantidade de votos.</p>
+    </div>
+    <div class="explorer">
+      <div class="exp-tools">
+        <select id="secMunSel" aria-label="Município"></select>
+        <input type="search" id="secSearch" placeholder="🔎 Filtrar por local ou bairro...">
+        <span class="exp-sum" id="secSummary"></span>
+      </div>
+      <div class="table-scroll" style="max-height:540px">
+        <table id="secDetTable">
+          <thead><tr><th class="num">Zona</th><th class="num">Seção</th><th>Local de votação (colégio/escola)</th><th>Bairro / Povoado</th><th class="num">Votos</th></tr></thead>
+          <tbody id="secDetBody"></tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -189,6 +207,14 @@
       <a class="dl-card" href="downloads/Relatorio_Jorginho_Sergipe_2026.pdf" download>
         <div class="dl-ic">PDF</div>
         <div><h4>Relatório completo (78 páginas)</h4><p>Mapas e uma página por município</p></div>
+      </a>
+      <a class="dl-card" href="downloads/Relatorio_Jorginho_Secoes_por_Municipio.pdf" download>
+        <div class="dl-ic">PDF</div>
+        <div><h4>Seções por município (94 páginas)</h4><p>Todas as seções com colégio, bairro/povoado e votos</p></div>
+      </a>
+      <a class="dl-card" href="downloads/jorginho_secoes_detalhado.csv" download>
+        <div class="dl-ic csv">CSV</div>
+        <div><h4>Seções detalhado</h4><p>5.029 seções com local de votação e bairro</p></div>
       </a>
       <a class="dl-card" href="downloads/jorginho_por_municipio.csv" download>
         <div class="dl-ic csv">CSV</div>
@@ -223,6 +249,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script src="data/dados.js"></script>
+<script src="data/secoes.js"></script>
 <script src="assets/js/app.js"></script>
 </body>
 </html>
