@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jorginho Araujo · 55777 · PSD — Análise Eleitoral · Sergipe 2026</title>
+<meta name="description" content="Relatório de inteligência eleitoral interativo de Jorginho Araujo (55777, PSD) — Deputado Estadual, Sergipe, eleições 2026, 1º turno. Dados oficiais do TSE.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#topo" class="brand">
+      <span class="brand-num">55777</span>
+      <span class="brand-name">Jorginho Araujo <small>· PSD</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#resumo">Resumo</a>
+      <a href="#mapa">Mapa</a>
+      <a href="#ranking">Ranking</a>
+      <a href="#municipios">Municípios</a>
+      <a href="#secoes">Seções</a>
+      <a href="#redutos">Redutos</a>
+      <a href="#downloads" class="btn-nav">Downloads</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="topo">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-kicker">Relatório de Inteligência Eleitoral · Eleições 2026 · 1º turno</p>
+    <h1 class="hero-title">JORGINHO ARAUJO</h1>
+    <p class="hero-sub"><b>55777</b> · PSD · Deputado Estadual · Sergipe</p>
+    <div class="hero-stats">
+      <div class="hstat"><span class="num" data-target="49550">0</span><span class="lbl">votos nominais</span></div>
+      <div class="hstat"><span class="num prefix" data-target="2" data-suffix="º">0</span><span class="lbl">lugar entre 213</span></div>
+      <div class="hstat"><span class="num" data-target="3.83" data-decimals="2" data-suffix="%">0</span><span class="lbl">dos votos válidos</span></div>
+      <div class="hstat"><span class="num" data-target="75">0</span><span class="lbl">municípios (de 75)</span></div>
+      <div class="hstat"><span class="num" data-target="6">0</span><span class="lbl">municípios em 1º</span></div>
+      <div class="hstat"><span class="num" data-target="5029">0</span><span class="lbl">seções com voto</span></div>
+    </div>
+    <a href="#resumo" class="hero-scroll">Explorar análise ↓</a>
+  </div>
+</section>
+
+<!-- RESUMO -->
+<section class="section" id="resumo">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">01 · Panorama</span>
+      <h2>Resumo executivo</h2>
+      <p class="sec-desc">Jorginho Araujo é um candidato de <b>votação alta e muito bem posicionada</b> (vice-líder estadual), com perfil fortemente <b>territorializado</b>: domínio em redutos do interior e presença diluída, mas volumosa, na Grande Aracaju.</p>
+    </div>
+    <div class="cards" id="insightCards"></div>
+  </div>
+</section>
+
+<!-- MAPA -->
+<section class="section alt" id="mapa">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">02 · Território</span>
+      <h2>Mapa interativo de Sergipe</h2>
+      <p class="sec-desc">Passe o mouse (ou toque) em cada município. Alterne entre percentual dos votos válidos e votos absolutos.</p>
+    </div>
+    <div class="map-wrap">
+      <div class="map-toggle">
+        <button class="mt-btn active" data-metric="pctVal">% dos válidos</button>
+        <button class="mt-btn" data-metric="votos">Votos absolutos</button>
+      </div>
+      <div class="map-grid">
+        <div id="map"></div>
+        <aside class="map-info" id="mapInfo">
+          <h3>Selecione um município</h3>
+          <p class="mi-hint">Passe o cursor sobre o mapa para ver os detalhes de cada cidade.</p>
+        </aside>
+      </div>
+      <div class="map-legend" id="mapLegend"></div>
+    </div>
+  </div>
+</section>
+
+<!-- RANKING -->
+<section class="section" id="ranking">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">03 · Competição</span>
+      <h2>Ranking estadual — Deputado Estadual</h2>
+      <p class="sec-desc">Os 20 candidatos mais votados do estado. Jorginho (destacado) ficou em <b>2º lugar</b>, a apenas <b>3.215 votos</b> do 1º colocado.</p>
+    </div>
+    <div class="chart-card"><div class="chart-box ranking"><canvas id="rankingChart"></canvas></div></div>
+  </div>
+</section>
+
+<!-- MUNICIPIOS -->
+<section class="section alt" id="municipios">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">04 · Municípios</span>
+      <h2>Desempenho por município</h2>
+      <p class="sec-desc">Volume de votos e grau de domínio (percentual) nas principais cidades. Tabela completa, pesquisável e ordenável, com os 75 municípios.</p>
+    </div>
+    <div class="grid-2">
+      <div class="chart-card"><h4>Top 12 por votos absolutos</h4><div class="chart-box"><canvas id="topVotosChart"></canvas></div></div>
+      <div class="chart-card"><h4>Top 12 por % dos válidos (redutos)</h4><div class="chart-box"><canvas id="topPctChart"></canvas></div></div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-tools">
+        <input type="search" id="tblSearch" placeholder="🔎 Buscar município...">
+        <span class="table-count" id="tblCount"></span>
+      </div>
+      <div class="table-scroll">
+        <table id="munTable">
+          <thead>
+            <tr>
+              <th data-k="posicaoList" class="num">#</th>
+              <th data-k="nome">Município</th>
+              <th data-k="votos" class="num sortable">Votos</th>
+              <th data-k="pctVal" class="num sortable">% válidos</th>
+              <th data-k="posicao" class="num sortable">Pos. local</th>
+              <th data-k="secoes" class="num sortable">Seções</th>
+              <th data-k="media_sec" class="num sortable">Méd./seção</th>
+              <th data-k="maior_sec" class="num sortable">Maior seção</th>
+            </tr>
+          </thead>
+          <tbody id="munTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECOES -->
+<section class="section" id="secoes">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">05 · Seções / Urnas</span>
+      <h2>Análise por seção eleitoral</h2>
+      <p class="sec-desc">Como os votos se distribuem entre as 5.029 urnas em que Jorginho pontuou. A mediana (4) bem abaixo da média (9,9) revela um núcleo de urnas de altíssima performance.</p>
+    </div>
+    <div class="cards" id="secCards"></div>
+    <div class="grid-2">
+      <div class="chart-card"><h4>Distribuição das seções por faixa de votos</h4><div class="chart-box"><canvas id="histChart"></canvas></div></div>
+      <div class="chart-card">
+        <h4>As 12 urnas mais produtivas</h4>
+        <div class="table-scroll compact">
+          <table id="topSecTable"><thead><tr><th>Município</th><th class="num">Zona</th><th class="num">Seção</th><th class="num">Votos</th></tr></thead><tbody id="topSecBody"></tbody></table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REDUTOS -->
+<section class="section alt" id="redutos">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">06 · Bases eleitorais</span>
+      <h2>Redutos — onde foi o candidato mais votado</h2>
+      <p class="sec-desc">Municípios onde Jorginho venceu todos os 212 concorrentes a Deputado Estadual. São o núcleo duro da candidatura.</p>
+    </div>
+    <div class="redutos-grid" id="redutosGrid"></div>
+  </div>
+</section>
+
+<!-- DOWNLOADS -->
+<section class="section" id="downloads">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">07 · Materiais</span>
+      <h2>Downloads</h2>
+      <p class="sec-desc">Relatórios em PDF e planilhas com os dados oficiais completos.</p>
+    </div>
+    <div class="dl-grid">
+      <a class="dl-card" href="downloads/Relatorio_Jorginho_Tabela_2paginas_decrescente.pdf" download>
+        <div class="dl-ic">PDF</div>
+        <div><h4>Tabela resumida (2 páginas)</h4><p>Votos e % por município + resumo por seção</p></div>
+      </a>
+      <a class="dl-card" href="downloads/Relatorio_Jorginho_Sergipe_2026.pdf" download>
+        <div class="dl-ic">PDF</div>
+        <div><h4>Relatório completo (78 páginas)</h4><p>Mapas e uma página por município</p></div>
+      </a>
+      <a class="dl-card" href="downloads/jorginho_por_municipio.csv" download>
+        <div class="dl-ic csv">CSV</div>
+        <div><h4>Votos por município</h4><p>Planilha com totais, % e comparecimento</p></div>
+      </a>
+      <a class="dl-card" href="downloads/jorginho_por_secao.csv" download>
+        <div class="dl-ic csv">CSV</div>
+        <div><h4>Votos por seção (5.029 linhas)</h4><p>Detalhe por urna em cada município</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <h4>Jorginho Araujo · 55777 · PSD</h4>
+        <p>Deputado Estadual — Sergipe · Eleições 2026 · 1º turno (04/10/2026)</p>
+      </div>
+      <div class="foot-meta">
+        <p><b>Fonte:</b> TSE — Boletim de Urna Web (BWEB), 1º turno 2026.</p>
+        <p><b>Malha geográfica:</b> IBGE. <b>Votos válidos</b> = nominais + legenda do cargo.</p>
+        <p class="foot-note">Relatório analítico independente baseado em dados públicos oficiais.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="totop" id="toTop" aria-label="Voltar ao topo">↑</button>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="data/dados.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
