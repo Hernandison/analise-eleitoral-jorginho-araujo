@@ -154,6 +154,13 @@ tbody tr.win:hover{background:#dcf5e8}
 .footer h4{color:#fff;font-size:18px;margin-bottom:6px}
 .foot-meta p{font-size:13.5px;margin-bottom:4px}
 .foot-note{color:#8fb0d2;margin-top:10px;font-style:italic}
+.foot-credit{margin-top:26px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.fc-copy{color:#cfe0f2;font-size:14px}
+.fc-copy b{color:#fff}
+.foot-social{display:flex;gap:10px;flex-wrap:wrap}
+.foot-social a{display:inline-flex;align-items:center;gap:8px;color:#dbe9f8;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:8px 14px;border-radius:30px;font-size:13.5px;font-weight:600;transition:.2s}
+.foot-social a:hover{background:#fff;color:var(--navy);border-color:#fff}
+.foot-social svg{flex:none}
 
 /* TO TOP */
 .totop{position:fixed;right:22px;bottom:22px;width:46px;height:46px;border-radius:50%;background:var(--navy);color:#fff;border:0;font-size:20px;cursor:pointer;opacity:0;pointer-events:none;transition:.3s;box-shadow:var(--shadow-lg);z-index:900}
